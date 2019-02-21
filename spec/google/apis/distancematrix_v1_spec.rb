@@ -2,18 +2,27 @@
 
 require 'google/apis/distance_matrix'
 
-RSpec.describe Google::Apis::DistanceMatrix::DistanceMatrixService, :vcr do
+RSpec.describe Google::Apis::DistanceMatrix::DistanceMatrixService do
   subject(:distance_matrix) { described_class.new }
 
   before { distance_matrix.key = ENV.fetch('GOOGLE_API_KEY') }
 
-  describe '#distance' do
+  describe '#distance', vcr: { cassette_name: 'distance' } do
     let(:origin) { 'Washington, DC, USA' }
     let(:dest) { 'New York, NY, USA' }
 
     describe 'response' do
       subject(:distance_matrix_data) do
-        distance_matrix.distance(origins: origin, destinations: dest)
+        distance_matrix.distance(
+          origins: origin,
+          destinations: dest,
+          mode: 'driving',
+          language: 'en',
+          units: 'metric',
+          avoid: 'tolls',
+          region: 'us',
+          departure_time: 'now'
+        )
       end
 
       it { is_expected.to have_attributes(origin_addresses: [origin]) }

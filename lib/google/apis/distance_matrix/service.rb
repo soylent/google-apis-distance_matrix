@@ -43,12 +43,32 @@ module Google
         end
         
         # Requests the distance matrix data
+        # @param [Fixnum] arrival_time
+        #   Specifies the desired time of arrival for transit directions
+        # @param [String] avoid
+        #   Indicates that the calculated route(s) should avoid the indicated features
+        # @param [Fixnum] departure_time
+        #   Specifies the desired time of departure
         # @param [String] destinations
         #   List of addresses and/or textual latitude/longitude values to which to
         #   calculate distance and time
+        # @param [String] language
+        #   The language in which to return results
+        # @param [String] mode
+        #   Specifies the mode of transport to use when calculating directions
         # @param [String] origins
         #   List of addresses and/or textual latitude/longitude values from which to
         #   calculate distance and time
+        # @param [String] region
+        #   Specifies the prefered region the geocoder should search first, but it will
+        #   not restrict the results to only this region. Valid values are a ccTLD code.
+        # @param [String] traffic_model
+        #   Specifies the assumptions to use when calculating time in traffic
+        # @param [String] transit_mode
+        #   Specifies one or more preferred modes of transit. This parameter may only be
+        #   specified for requests where the mode is transit.
+        # @param [String] transit_routing_preference
+        #   Specifies preferences for transit requests
         # @param [String] units
         #   Specifies the unit system to use when expressing distance as text
         # @param [Google::Apis::RequestOptions] options
@@ -63,12 +83,21 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def distance(destinations: nil, origins: nil, units: nil, options: nil, &block)
+        def distance(arrival_time: nil, avoid: nil, departure_time: nil, destinations: nil, language: nil, mode: nil, origins: nil, region: nil, traffic_model: nil, transit_mode: nil, transit_routing_preference: nil, units: nil, options: nil, &block)
           command =  make_simple_command(:get, 'json', options)
           command.response_representation = Google::Apis::DistanceMatrix::DistanceMatrixData::Representation
           command.response_class = Google::Apis::DistanceMatrix::DistanceMatrixData
+          command.query['arrival_time'] = arrival_time unless arrival_time.nil?
+          command.query['avoid'] = avoid unless avoid.nil?
+          command.query['departure_time'] = departure_time unless departure_time.nil?
           command.query['destinations'] = destinations unless destinations.nil?
+          command.query['language'] = language unless language.nil?
+          command.query['mode'] = mode unless mode.nil?
           command.query['origins'] = origins unless origins.nil?
+          command.query['region'] = region unless region.nil?
+          command.query['traffic_model'] = traffic_model unless traffic_model.nil?
+          command.query['transit_mode'] = transit_mode unless transit_mode.nil?
+          command.query['transit_routing_preference'] = transit_routing_preference unless transit_routing_preference.nil?
           command.query['units'] = units unless units.nil?
           execute_or_queue_command(command, &block)
         end

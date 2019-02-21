@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=New%20York,%20NY,%20USA&key=<GOOGLE_API_KEY>&origins=Washington,%20DC,%20USA
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?avoid=tolls&departure_time=now&destinations=New%20York,%20NY,%20USA&key=<GOOGLE_API_KEY>&language=en&mode=driving&origins=Washington,%20DC,%20USA&region=us&units=metric
     body:
       encoding: UTF-8
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 21 Feb 2019 00:30:51 GMT
+      - Thu, 21 Feb 2019 23:07:40 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -25,25 +25,25 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 21 Feb 2019 00:30:52 GMT
+      - Thu, 21 Feb 2019 23:07:33 GMT
       Expires:
-      - Fri, 22 Feb 2019 00:30:52 GMT
-      Cache-Control:
-      - public, max-age=86400
-      Vary:
-      - Accept-Language
+      - Thu, 21 Feb 2019 23:08:03 GMT
       Content-Encoding:
       - gzip
       Server:
       - mafe
       Content-Length:
-      - '223'
+      - '248'
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=669
+      - gfet4t7; dur=777
+      Cache-Control:
+      - public, max-age=30
+      Age:
+      - '8'
       Alt-Svc:
       - quic=":443"; ma=2592000; v="44,43,39"
     body:
@@ -57,12 +57,16 @@ http_interactions:
                  "elements" : [
                     {
                        "distance" : {
-                          "text" : "362 km",
-                          "value" : 361957
+                          "text" : "434 km",
+                          "value" : 434372
                        },
                        "duration" : {
-                          "text" : "3 hours 51 mins",
-                          "value" : 13840
+                          "text" : "4 hours 59 mins",
+                          "value" : 17920
+                       },
+                       "duration_in_traffic" : {
+                          "text" : "5 hours 20 mins",
+                          "value" : 19199
                        },
                        "status" : "OK"
                     }
@@ -72,5 +76,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Thu, 21 Feb 2019 00:30:52 GMT
+  recorded_at: Thu, 21 Feb 2019 23:07:40 GMT
 recorded_with: VCR 4.0.0

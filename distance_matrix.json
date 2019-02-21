@@ -45,12 +45,81 @@
                     "metric",
                     "imperial"
                   ],
-                  "enumDescriptions": [
-                    "Metric units",
-                    "Imperial units"
-                  ],
                   "location": "query",
                   "type": "string"
+                },
+                "mode": {
+                  "description": "Specifies the mode of transport to use when calculating directions",
+                  "type": "string",
+                  "location": "query",
+                  "enum": [
+                    "driving",
+                    "walking",
+                    "transit",
+                    "bicycling"
+                  ]
+                },
+                "language": {
+                  "description": "The language in which to return results",
+                  "type": "string",
+                  "location": "query"
+                },
+                "region": {
+                  "description": "Specifies the prefered region the geocoder should search first, but it will not restrict the results to only this region. Valid values are a ccTLD code.",
+                  "type": "string",
+                  "location": "query"
+                },
+                "avoid": {
+                  "description": "Indicates that the calculated route(s) should avoid the indicated features",
+                  "type": "string",
+                  "location": "query",
+                  "enum": [
+                    "tolls",
+                    "highways",
+                    "ferries",
+                    "indoor"
+                  ]
+                },
+                "arrival_time": {
+                  "description": "Specifies the desired time of arrival for transit directions",
+                  "type": "integer",
+                  "location": "query"
+                },
+                "departure_time": {
+                  "description": "Specifies the desired time of departure",
+                  "type": "integer",
+                  "location": "query"
+                },
+                "transit_mode": {
+                  "description": "Specifies one or more preferred modes of transit. This parameter may only be specified for requests where the mode is transit.",
+                  "type": "string",
+                  "location": "query",
+                  "enum": [
+                    "bus",
+                    "subway",
+                    "train",
+                    "tram",
+                    "rail"
+                  ]
+                },
+                "traffic_model": {
+                  "description": "Specifies the assumptions to use when calculating time in traffic",
+                  "type": "string",
+                  "location": "query",
+                  "enum": [
+                    "best_guess",
+                    "pessimistic",
+                    "optimistic"
+                  ]
+                },
+                "transit_routing_preference": {
+                  "description": "Specifies preferences for transit requests",
+                  "type": "string",
+                  "location": "query",
+                  "enum": [
+                    "less_walking",
+                    "fewer_transfers"
+                  ]
                 }
               },
               "response": {
