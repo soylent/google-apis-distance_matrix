@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=New%20York,%20NY,%20USA&key=<GOOGLE_API_KEY>&origins=Washington,%20DC,%20USA
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - unknown/0.0.0 google-api-ruby-client/0.28.4 Mac OS X/10.12.6 (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 21 Feb 2019 00:30:52 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 21 Feb 2019 00:30:52 GMT
+      Expires:
+      - Fri, 22 Feb 2019 00:30:52 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Vary:
+      - Accept-Language
+      Content-Encoding:
+      - gzip
+      Server:
+      - mafe
+      Content-Length:
+      - '223'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=59
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="44,43,39"
+    body:
+      encoding: UTF-8
+      string: |
+        {
+           "destination_addresses" : [ "New York, NY, USA" ],
+           "origin_addresses" : [ "Washington, DC, USA" ],
+           "rows" : [
+              {
+                 "elements" : [
+                    {
+                       "distance" : {
+                          "text" : "362 km",
+                          "value" : 361957
+                       },
+                       "duration" : {
+                          "text" : "3 hours 51 mins",
+                          "value" : 13840
+                       },
+                       "status" : "OK"
+                    }
+                 ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Thu, 21 Feb 2019 00:30:52 GMT
+recorded_with: VCR 4.0.0

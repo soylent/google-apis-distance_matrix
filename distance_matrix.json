@@ -1,0 +1,159 @@
+{
+  "canonicalName": "DistanceMatrix",
+  "description": "Provides travel distance and time for a matrix of origins and destinations, based on the recommended route between start and end points",
+  "documentationLink": "https://developers.google.com/maps/documentation/distance-matrix/start",
+  "id": "distance_matrix",
+  "kind": "discovery#restDescription",
+  "name": "distance_matrix",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "alt": {
+      "description": "Dummy parameter to work around a bug in the lib"
+    },
+    "key": {
+      "description": "API key",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "distanceMatrix": {
+          "methods": {
+            "distance": {
+              "description": "Requests the distance matrix data",
+              "httpMethod": "GET",
+              "id": "distancematrix.distance",
+              "path": "json",
+              "parameters": {
+                "destinations": {
+                  "description": "List of addresses and/or textual latitude/longitude values to which to calculate distance and time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "origins": {
+                  "description": "List of addresses and/or textual latitude/longitude values from which to calculate distance and time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "units": {
+                  "description": "Specifies the unit system to use when expressing distance as text",
+                  "enum": [
+                    "metric",
+                    "imperial"
+                  ],
+                  "enumDescriptions": [
+                    "Metric units",
+                    "Imperial units"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "response": {
+                "$ref": "DistanceMatrixData"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20190220",
+  "rootUrl": "https://maps.googleapis.com/maps/api/distancematrix/",
+  "schemas": {
+    "Distance": {
+      "description": "Distance between two points",
+      "properties": {
+        "text": {
+          "description": "Rounded human-readable distance in an appropriate unit for the request",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "integer",
+          "description": "Distance in meters"
+        }
+      },
+      "type": "object"
+    },
+    "DistanceMatrixData": {
+      "description": "Distance matrix data",
+      "properties": {
+        "destination_addresses": {
+          "description": "Array of addresses as returned by the API from your original request",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "origin_addresses": {
+          "description": "Array of addresses as returned by the API from your original request",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "description": "Array of elements",
+          "items": {
+            "$ref": "Row"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Response status",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Duration": {
+      "description": "Duration",
+      "properties": {
+        "text": {
+          "description": "Human-readable representation of the duration",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "integer",
+          "description": "Duration in seconds"
+        }
+      },
+      "type": "object"
+    },
+    "Element": {
+      "description": "Travel distance and time for a pair of origin and destination",
+      "properties": {
+        "distance": {
+          "$ref": "Distance",
+          "description": "Total distance of this route"
+        },
+        "duration": {
+          "$ref": "Duration",
+          "description": "Length of time it takes to travel this route"
+        },
+        "status": {
+          "description": "Status",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Row": {
+      "properties": {
+        "elements": {
+          "items": {
+            "$ref": "Element"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "Distance Matrix API",
+  "version": ""
+}

@@ -1,0 +1,8 @@
+---
+
+AllCops:
+  Include:
+    - Gemfile
+    - Rakefile
+    - google-apis-distance_matrix.gemspec
+    - spec/**/*.rb
