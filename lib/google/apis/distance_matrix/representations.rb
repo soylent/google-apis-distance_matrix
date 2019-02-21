@@ -70,6 +70,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :destination_addresses, as: 'destination_addresses'
+          property :error_message, as: 'error_message'
           collection :origin_addresses, as: 'origin_addresses'
           collection :rows, as: 'rows', class: Google::Apis::DistanceMatrix::Row, decorator: Google::Apis::DistanceMatrix::Row::Representation
       

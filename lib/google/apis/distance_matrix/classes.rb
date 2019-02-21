@@ -56,6 +56,11 @@ module Google
         # @return [Array<String>]
         attr_accessor :destination_addresses
       
+        # Detailed information about the reasons behind the given status code
+        # Corresponds to the JSON property `error_message`
+        # @return [String]
+        attr_accessor :error_message
+      
         # Array of addresses as returned by the API from your original request
         # Corresponds to the JSON property `origin_addresses`
         # @return [Array<String>]
@@ -78,6 +83,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @destination_addresses = args[:destination_addresses] if args.key?(:destination_addresses)
+          @error_message = args[:error_message] if args.key?(:error_message)
           @origin_addresses = args[:origin_addresses] if args.key?(:origin_addresses)
           @rows = args[:rows] if args.key?(:rows)
           @status = args[:status] if args.key?(:status)

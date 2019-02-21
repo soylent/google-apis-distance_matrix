@@ -184,6 +184,10 @@
             "UNKNOWN_ERROR"
           ],
           "type": "string"
+        },
+        "error_message": {
+          "description": "Detailed information about the reasons behind the given status code",
+          "type": "string"
         }
       },
       "type": "object"

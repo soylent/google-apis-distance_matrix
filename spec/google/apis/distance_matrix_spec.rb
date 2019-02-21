@@ -7,11 +7,11 @@ RSpec.describe Google::Apis::DistanceMatrix::DistanceMatrixService do
 
   before { distance_matrix.key = ENV.fetch('GOOGLE_API_KEY') }
 
-  describe '#distance', vcr: { cassette_name: 'distance' } do
+  describe '#distance' do
     let(:origin) { 'Washington, DC, USA' }
     let(:dest) { 'New York, NY, USA' }
 
-    describe 'response' do
+    describe 'successful response', vcr: { cassette_name: 'success' } do
       subject(:distance_matrix_data) do
         distance_matrix.distance(
           origins: origin,
@@ -42,6 +42,14 @@ RSpec.describe Google::Apis::DistanceMatrix::DistanceMatrixService do
 
         it { is_expected.to have_attributes(text: String, value: Integer) }
       end
+    end
+
+    describe 'unsuccessful response', vcr: { cassette_name: 'error' } do
+      subject { distance_matrix.distance }
+
+      it { is_expected.to have_attributes(origin_addresses: []) }
+      it { is_expected.to have_attributes(destination_addresses: []) }
+      it { is_expected.to have_attributes(status: 'INVALID_REQUEST') }
     end
   end
 end

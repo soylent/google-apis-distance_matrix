@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 21 Feb 2019 23:07:40 GMT
+      - Thu, 21 Feb 2019 23:57:48 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -25,25 +25,23 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 21 Feb 2019 23:07:33 GMT
+      - Thu, 21 Feb 2019 23:57:50 GMT
       Expires:
-      - Thu, 21 Feb 2019 23:08:03 GMT
+      - Thu, 21 Feb 2019 23:58:20 GMT
+      Cache-Control:
+      - public, max-age=30
       Content-Encoding:
       - gzip
       Server:
       - mafe
       Content-Length:
-      - '248'
+      - '245'
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=777
-      Cache-Control:
-      - public, max-age=30
-      Age:
-      - '8'
+      - gfet4t7; dur=860
       Alt-Svc:
       - quic=":443"; ma=2592000; v="44,43,39"
     body:
@@ -57,16 +55,16 @@ http_interactions:
                  "elements" : [
                     {
                        "distance" : {
-                          "text" : "434 km",
-                          "value" : 434372
+                          "text" : "428 km",
+                          "value" : 428194
                        },
                        "duration" : {
-                          "text" : "4 hours 59 mins",
-                          "value" : 17920
+                          "text" : "5 hours 6 mins",
+                          "value" : 18382
                        },
                        "duration_in_traffic" : {
-                          "text" : "5 hours 20 mins",
-                          "value" : 19199
+                          "text" : "5 hours 19 mins",
+                          "value" : 19126
                        },
                        "status" : "OK"
                     }
@@ -76,5 +74,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Thu, 21 Feb 2019 23:07:40 GMT
+  recorded_at: Thu, 21 Feb 2019 23:57:49 GMT
 recorded_with: VCR 4.0.0
