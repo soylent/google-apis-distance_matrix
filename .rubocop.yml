@@ -6,3 +6,8 @@ AllCops:
     - Rakefile
     - google-apis-distance_matrix.gemspec
     - spec/**/*.rb
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - describe
+    - context
