@@ -27,15 +27,87 @@
               "description": "Requests the distance matrix data",
               "httpMethod": "GET",
               "id": "distancematrix.distance",
-              "path": "json",
               "parameters": {
+                "arrival_time": {
+                  "description": "Specifies the desired time of arrival for transit directions",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "avoid": {
+                  "description": "Indicates that the calculated route(s) should avoid the indicated features",
+                  "enum": [
+                    "tolls",
+                    "highways",
+                    "ferries",
+                    "indoor"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "departure_time": {
+                  "description": "Specifies the desired time of departure",
+                  "location": "query",
+                  "type": "integer"
+                },
                 "destinations": {
                   "description": "List of addresses and/or textual latitude/longitude values to which to calculate distance and time",
                   "location": "query",
                   "type": "string"
                 },
+                "language": {
+                  "description": "The language in which to return results",
+                  "location": "query",
+                  "type": "string"
+                },
+                "mode": {
+                  "description": "Specifies the mode of transport to use when calculating directions",
+                  "enum": [
+                    "driving",
+                    "walking",
+                    "transit",
+                    "bicycling"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "origins": {
                   "description": "List of addresses and/or textual latitude/longitude values from which to calculate distance and time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "region": {
+                  "description": "Specifies the prefered region the geocoder should search first, but it will not restrict the results to only this region. Valid values are a ccTLD code.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "traffic_model": {
+                  "description": "Specifies the assumptions to use when calculating time in traffic",
+                  "enum": [
+                    "best_guess",
+                    "pessimistic",
+                    "optimistic"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "transit_mode": {
+                  "description": "Specifies one or more preferred modes of transit. This parameter may only be specified for requests where the mode is transit.",
+                  "enum": [
+                    "bus",
+                    "subway",
+                    "train",
+                    "tram",
+                    "rail"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "transit_routing_preference": {
+                  "description": "Specifies preferences for transit requests",
+                  "enum": [
+                    "less_walking",
+                    "fewer_transfers"
+                  ],
                   "location": "query",
                   "type": "string"
                 },
@@ -47,81 +119,9 @@
                   ],
                   "location": "query",
                   "type": "string"
-                },
-                "mode": {
-                  "description": "Specifies the mode of transport to use when calculating directions",
-                  "type": "string",
-                  "location": "query",
-                  "enum": [
-                    "driving",
-                    "walking",
-                    "transit",
-                    "bicycling"
-                  ]
-                },
-                "language": {
-                  "description": "The language in which to return results",
-                  "type": "string",
-                  "location": "query"
-                },
-                "region": {
-                  "description": "Specifies the prefered region the geocoder should search first, but it will not restrict the results to only this region. Valid values are a ccTLD code.",
-                  "type": "string",
-                  "location": "query"
-                },
-                "avoid": {
-                  "description": "Indicates that the calculated route(s) should avoid the indicated features",
-                  "type": "string",
-                  "location": "query",
-                  "enum": [
-                    "tolls",
-                    "highways",
-                    "ferries",
-                    "indoor"
-                  ]
-                },
-                "arrival_time": {
-                  "description": "Specifies the desired time of arrival for transit directions",
-                  "type": "integer",
-                  "location": "query"
-                },
-                "departure_time": {
-                  "description": "Specifies the desired time of departure",
-                  "type": "integer",
-                  "location": "query"
-                },
-                "transit_mode": {
-                  "description": "Specifies one or more preferred modes of transit. This parameter may only be specified for requests where the mode is transit.",
-                  "type": "string",
-                  "location": "query",
-                  "enum": [
-                    "bus",
-                    "subway",
-                    "train",
-                    "tram",
-                    "rail"
-                  ]
-                },
-                "traffic_model": {
-                  "description": "Specifies the assumptions to use when calculating time in traffic",
-                  "type": "string",
-                  "location": "query",
-                  "enum": [
-                    "best_guess",
-                    "pessimistic",
-                    "optimistic"
-                  ]
-                },
-                "transit_routing_preference": {
-                  "description": "Specifies preferences for transit requests",
-                  "type": "string",
-                  "location": "query",
-                  "enum": [
-                    "less_walking",
-                    "fewer_transfers"
-                  ]
                 }
               },
+              "path": "json",
               "response": {
                 "$ref": "DistanceMatrixData"
               }
@@ -142,8 +142,8 @@
           "type": "string"
         },
         "value": {
-          "$ref": "integer",
-          "description": "Distance in meters"
+          "description": "Distance in meters",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -174,6 +174,15 @@
         },
         "status": {
           "description": "Response status",
+          "enum": [
+            "OK",
+            "INVALID_REQUEST",
+            "MAX_ELEMENTS_EXCEEDED",
+            "OVER_DAILY_LIMIT",
+            "OVER_QUERY_LIMIT",
+            "REQUEST_DENIED",
+            "UNKNOWN_ERROR"
+          ],
           "type": "string"
         }
       },
@@ -187,8 +196,8 @@
           "type": "string"
         },
         "value": {
-          "$ref": "integer",
-          "description": "Duration in seconds"
+          "description": "Duration in seconds",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -204,9 +213,41 @@
           "$ref": "Duration",
           "description": "Length of time it takes to travel this route"
         },
+        "duration_in_traffic": {
+          "$ref": "Duration",
+          "description": "Length of time it takes to travel this route, based on current and historical traffic conditions"
+        },
+        "fare": {
+          "$ref": "Fare",
+          "description": "Total fare on this route"
+        },
         "status": {
           "description": "Status",
+          "enum": [
+            "OK",
+            "NOT_FOUND",
+            "ZERO_RESULTS",
+            "MAX_ROUTE_LENGTH_EXCEEDED"
+          ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Fare": {
+      "description": "Fare",
+      "properties": {
+        "currency": {
+          "description": "Currency code indicating the currency that the amount is expressed in",
+          "type": "string"
+        },
+        "text": {
+          "description": "Total fare amount, formatted in the requested language",
+          "type": "string"
+        },
+        "value": {
+          "description": "Total fare amount, in the currency specified above",
+          "type": "integer"
         }
       },
       "type": "object"

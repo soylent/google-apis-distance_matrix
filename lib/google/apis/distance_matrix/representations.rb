@@ -46,6 +46,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class Fare
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Row
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -86,7 +92,20 @@ module Google
       
           property :duration, as: 'duration', class: Google::Apis::DistanceMatrix::Duration, decorator: Google::Apis::DistanceMatrix::Duration::Representation
       
+          property :duration_in_traffic, as: 'duration_in_traffic', class: Google::Apis::DistanceMatrix::Duration, decorator: Google::Apis::DistanceMatrix::Duration::Representation
+      
+          property :fare, as: 'fare', class: Google::Apis::DistanceMatrix::Fare, decorator: Google::Apis::DistanceMatrix::Fare::Representation
+      
           property :status, as: 'status'
+        end
+      end
+      
+      class Fare
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :currency, as: 'currency'
+          property :text, as: 'text'
+          property :value, as: 'value'
         end
       end
       

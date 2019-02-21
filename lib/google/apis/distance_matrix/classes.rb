@@ -33,7 +33,7 @@ module Google
       
         # Distance in meters
         # Corresponds to the JSON property `value`
-        # @return []
+        # @return [Fixnum]
         attr_accessor :value
       
         def initialize(**args)
@@ -95,7 +95,7 @@ module Google
       
         # Duration in seconds
         # Corresponds to the JSON property `value`
-        # @return []
+        # @return [Fixnum]
         attr_accessor :value
       
         def initialize(**args)
@@ -123,6 +123,16 @@ module Google
         # @return [Google::Apis::DistanceMatrix::Duration]
         attr_accessor :duration
       
+        # Duration
+        # Corresponds to the JSON property `duration_in_traffic`
+        # @return [Google::Apis::DistanceMatrix::Duration]
+        attr_accessor :duration_in_traffic
+      
+        # Fare
+        # Corresponds to the JSON property `fare`
+        # @return [Google::Apis::DistanceMatrix::Fare]
+        attr_accessor :fare
+      
         # Status
         # Corresponds to the JSON property `status`
         # @return [String]
@@ -136,7 +146,40 @@ module Google
         def update!(**args)
           @distance = args[:distance] if args.key?(:distance)
           @duration = args[:duration] if args.key?(:duration)
+          @duration_in_traffic = args[:duration_in_traffic] if args.key?(:duration_in_traffic)
+          @fare = args[:fare] if args.key?(:fare)
           @status = args[:status] if args.key?(:status)
+        end
+      end
+      
+      # Fare
+      class Fare
+        include Google::Apis::Core::Hashable
+      
+        # Currency code indicating the currency that the amount is expressed in
+        # Corresponds to the JSON property `currency`
+        # @return [String]
+        attr_accessor :currency
+      
+        # Total fare amount, formatted in the requested language
+        # Corresponds to the JSON property `text`
+        # @return [String]
+        attr_accessor :text
+      
+        # Total fare amount, in the currency specified above
+        # Corresponds to the JSON property `value`
+        # @return [Fixnum]
+        attr_accessor :value
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @currency = args[:currency] if args.key?(:currency)
+          @text = args[:text] if args.key?(:text)
+          @value = args[:value] if args.key?(:value)
         end
       end
       
