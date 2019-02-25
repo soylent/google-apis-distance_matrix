@@ -9,7 +9,9 @@ Gem::Specification.new do |s|
 
   s.files = Dir['lib/**/*', 'README.md']
 
-  s.add_development_dependency 'google-api-client', '~> 0.28'
+
+  s.add_runtime_dependency 'google-api-client', '~> 0.28'
+
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.8'
