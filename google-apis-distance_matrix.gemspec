@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'google-apis-distance_matrix'
-  s.version     = '0.1'
+  s.version     = '0.1.1'
   s.authors     = 'soylent'
   s.summary     = 'Google Distance Matrix API Client'
   s.description = 'Google Distance Matrix API Client'
